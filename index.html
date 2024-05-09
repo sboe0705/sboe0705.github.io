@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Timer</title>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.prod.js"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      <input type="text" v-model="userInput" placeholder="Enter your message">
+      <button @click="changeMessage">Display Message</button>
+      <div>userInput: {{ userInput }}</div>
+      <div v-if="displayedMessage">displayedMessage: {{ displayedMessage }}</div>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            userInput: '',
+            displayedMessage: ''
+          };
+        },
+        methods: {
+          changeMessage() {
+              this.displayedMessage = this.userInput;
+          }
+        }
+      });
+  
+      app.mount('#app');
+    </script>
+
+  </body>
+</html>

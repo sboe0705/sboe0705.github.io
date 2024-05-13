@@ -9,52 +9,27 @@
   <body>
 
     <div id="app">
-      <n-flex vertical>
-        <n-dropdown trigger="hover" :options="options" @select="washProgramSelected">
-          <n-button>Select Wash Program</n-button>
-        </n-dropdown>
-        <n-time-picker v-model:value="finishingTime" v-model:formatted-value="finishingFormattedTime" size="large" placeholder="Select Finishing Time" format="HH:mm"></n-time-picker>
-        <n-button type="primary" @click="calculateTimer">Calculate Timer</n-button>
-
-        <n-card title="Result">
-          washProgram: {{washProgram}}
-          <br />
-          finishingTime: {{finishingTime}}
-          <br />
-          finishingFormattedTime: {{finishingFormattedTime}}
-        </n-card>
-      </n-flex>
+      <input type="text" v-model="userInput" placeholder="Enter your message">
+      <button @click="changeMessage">Display Message</button>
+      <div>userInput: {{ userInput }}</div>
+      <div v-if="displayedMessage">displayedMessage: {{ displayedMessage }}</div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/naive-ui@2.38.2/dist/index.min.js"></script>
     <script>
       const app = Vue.createApp({
         data() {
           return {
-            options: [
-              {
-                label: '2:00 hours',
-                key: '120'
-              },
-              {
-                label: "2:30 hours",
-                key: "150"
-              }
-            ],
-            washProgram: '',
-            finishingTime: null,
-            finishingFormattedTime: null
+            userInput: '',
+            displayedMessage: ''
           };
         },
         methods: {
-          washProgramSelected(key) {
-            this.washProgram = key;
-          },
-          calculateTimer() {
+          changeMessage() {
+              this.displayedMessage = this.userInput;
           }
         }
       });
-      app.use(naive)
+  
       app.mount('#app');
     </script>
 
